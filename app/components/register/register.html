@@ -1,0 +1,39 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="">
+                <div class="myboard-login">
+                <button class="btn btn-primary" ng-click="primary()">Primary Notification</button>
+                    <h3 class="myboard-login__title">Register</h3>
+                    <form class="form-signin" name="regForm">
+                        <div class="tile tile-login">
+                            <img class="logo" src="asserts/images/logo-alt.png" alt="" width="152">
+                            <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid }">
+                                <div class="input-icon">
+                                    <span class="fa-user fa"></span>
+                                    <input type="email" name="email" class="form-control" ng-model="user.email" placeholder="Email">
+                                    
+                                </div>
+                                <p class="help-block" ng-show="regForm.email.$invalid">Enter a valid email.</p>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid }">
+                                <div class="input-icon">
+                                    <span class="fa-lock fa"></span>
+                                    <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="4" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;">
+                                    <p class="help-block" ng-show="regForm.password.$error.minlength">Min password length is 8 characters.</p>
+                                    <p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
+                                </div>
+                                
+                                <button type="button" data-style="expand-right" ng-click="signUp();" ng-disabled="!user.email || !user.password" class="btn btn-block btn-primary">Register</button>
+
+                                <div class="login-action clearfix">
+                                    <div class="pull-left">
+                                        <a href="#/login">Login</a>
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>

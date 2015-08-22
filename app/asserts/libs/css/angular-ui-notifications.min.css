@@ -1,0 +1,57 @@
+.ui-notification {
+	position: fixed;
+	z-index: 9999;
+	top: -100px;
+	right: 10px;
+	width: 300px;
+	cursor: pointer;
+	-webkit-transition: all ease .5s;
+	-o-transition: all ease .5s;
+	transition: all ease .5s;
+	color: #fff;
+	background: #02baf2;
+	border-radius: 5px;
+}
+.ui-notification.killed {
+	-webkit-transition: opacity ease 1s;
+	-o-transition: opacity ease 1s;
+	transition: opacity ease 1s;
+	opacity: 0
+}
+.ui-notification>h3 {
+	font-size: 14px;
+	font-weight: 700;
+	display: block;
+	margin: 10px 10px 0;
+	padding: 0 0 5px;
+	text-align: left;
+	border-bottom: 1px solid rgba(255, 255, 255, .3)
+}
+.ui-notification a {
+	color: #fff
+}
+.ui-notification a:hover {
+	text-decoration: underline
+}
+.ui-notification>.message {
+	margin: 10px
+}
+.ui-notification.warning {
+	color: #fff;
+	background: #f84545
+}
+.ui-notification.error {
+	color: #fff;
+	background: #cc0000
+}
+.ui-notification.success {
+	color: #fff;
+	background: #28948c
+}
+.ui-notification.info {
+	color: #fff;
+	background: #f3bc65
+}
+.ui-notification:hover {
+	opacity: .7
+}
