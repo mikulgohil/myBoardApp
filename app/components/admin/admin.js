@@ -1,35 +1,69 @@
 
-angular.module('myBoard.admin', ['firebase','ui.router'])
+angular.module('myBoard.admin',[])
 
-    // .config(function($stateProvider){
-    // $stateProvider
-    //     .state('admin',{
-    //         url:'/admin',
-    //         templateUrl: 'components/admin/admin.html',
-    //         controller : 'adminCtrl'
-    //     })
-    //     .state('edit', {
-    //         url: "/edit",
-    //         views: {
-    //             "view": {
-    //                 template: "Working fine for now EDIT"
-    //             }
-    //         }
-    //     })
-    //     .state('admin.add', {
-    //         url: "/add",
-    //         views: {
-    //             "view": {
-    //                 template: "This si addd"
-    //             }
-    //         }
-    //     })
-    // })
+.controller('adminCtrl', ['$scope', '$location','$firebaseArray','$firebaseObject','$firebaseAuth','UserProps',
+    function($scope, $location,$firebaseArray, $firebaseObject,$firebaseAuth,UserProps) {
+
+    	console.log("I am in Admin");
+
+        var refArray = new Firebase("https://mikul-board.firebaseio.com");
+        var messagesRef = refArray.child("board");
+        //var query = messagesRef.orderByChild("emailId").limitToLast(10);
+        var list = $firebaseArray(messagesRef);
+
+        $scope.authUser = UserProps.getUser();
 
 
+        $scope.viewBoard = function(index){
+            $scope.viewTitle =  list[index].title;
+            $scope.viewDetail =  list[index].detail;
+            $('#ViewModal').modal();
+        }
 
-.controller('adminCtrl', ['$scope', '$location', '$firebaseAuth',
-    function($scope, $location, $firebaseAuth) {
-    	console.log("Hello I am fine");
+         
+        // Edit board method
+        $scope.edit = function(index){
 
-}]);
+            var editArray = new Firebase("https://mikul-board.firebaseio.com/board/"+ index);
+            var getIndex = $firebaseObject(editArray);
+            //$scope.myD = getIndex;
+            //getIndex.title = "This is great working finr";
+            
+            var getTitle = getIndex;
+            console.log(getTitle.title);
+             //$scope.detail = getIndex.detail;
+             //console.log(getIndex);
+
+             $('#myModal').modal();
+             $scope.save = function(){
+                getIndex.title = $scope.title;
+                getIndex.detail = $scope.detail;
+
+                getIndex.$save().then(function(ref) {
+                  ref.key() === getIndex.$id;
+                }, function(error) {
+                  console.log("Error: ", error);
+                });
+             }
+            
+              
+        }
+
+        // Wait for data to load
+        list.$loaded()
+          .then(function(x) {
+            $scope.myData = list;
+            console.log(list.$indexFor($scope.username));  
+          })
+          .catch(function(error) {
+            console.log("Error:", error);
+          });
+        
+        // Remove method  
+        $scope.remove = function(index){
+            list.$remove(index).then(function(ref) {
+                console.log("remove");
+            });
+        }
+}])
+

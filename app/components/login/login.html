@@ -1,4 +1,5 @@
-<div class="container">
+<div class="background-Wrap">
+<div class="container" >
     <div class="row">
         <div class="myboard-login">
             <h3 class="myboard-login__title">Login</h3>
@@ -9,14 +10,12 @@
                         <div class="input-icon">
                             <span class="fa-lock fa"></span>
                             <input type="email" name="email" class="form-control" ng-model="user.email" placeholder="email">
-                            <p class="help-block" ng-show="signinForm.email.$invalid">Enter a valid email.</p>
                         </div>
                     </div>
                     <div class="form-group" ng-class="{ 'has-error' : signinForm.password.$invalid }">
                         <div class="input-icon">
                         <span class="fa-lock fa"></span>
                         <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="3" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;">
-                        <p class="help-block" ng-show="signinForm.password.$error.minlength">Min password length is 8 characters.</p>
                         </div>
                     </div>
                     
@@ -26,11 +25,18 @@
                             <a href="#/register">Register</a>
                         </div>
                         <div class="pull-right">
-                            <a href="#/forget">Forget?</a>
+                            <a href="#/forget">Forget Password?</a>
                         </div>
                     </div>
+                    <ul class="myboard-login__auth">
+                        <li ng-click="login()">
+                            <button class="btn btn-block btn-primary"><i class="fa fa-github-alt"></i>Github</button>
+                        </li>
+                    </ul>
                 </div>
             </form>
         </div>
     </div>
+</div>
+
 </div>

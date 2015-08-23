@@ -1,36 +1,47 @@
 angular.module('myBoard.login', ['firebase'])
 
-.controller('loginCtrl', ['$scope','$location','CommonProp','$firebaseAuth',function($scope,$location,CommonProp,$firebaseAuth) {
- var firebaseObj = new Firebase("https://mikul-board.firebaseio.com");
-    var loginObj = $firebaseAuth(firebaseObj);
-  
-  $scope.user = {};
+.controller('loginCtrl', ['$scope', '$location', 'UserProps', '$firebaseAuth',
+    function($scope, $location, UserProps, $firebaseAuth) {
+        var firebaseObj = new Firebase("https://mikul-board.firebaseio.com");
+        var loginObj = $firebaseAuth(firebaseObj);
 
-  $scope.SignIn = function(e) {
 
-    e.preventDefault();
-    var username = $scope.user.email;
-    var password = $scope.user.password;
-    loginObj.$authWithPassword({
-            email: username,
-            password: password
-        })
-        .then(function(user) {
-            //Success callback
-		
-            console.log('Authentication successful');
-	CommonProp.setUser(user.password.email);
-		$location.path('/admin');
-        }, function(error) {
-            //Failure callback
-		
-            console.log(error + 'Authentication failure');
-        });
-}
-}])
-.service('CommonProp', function() {
+        $scope.login = function() {
+            var usersRef = new Firebase('https://mikul-board.firebaseio.com/users');
+            var usersRef = $firebaseAuth(usersRef);
+
+            usersRef.$authWithOAuthPopup('github').then(function(authData) {
+                $location.path('/admin');
+            }).catch(function(error) {
+                console.log("Error: ", error);
+            });
+        }
+
+
+        $scope.user = {};
+        // SingIn method
+        $scope.SignIn = function(e) {
+            e.preventDefault();
+            var username = $scope.user.email;
+            var password = $scope.user.password;
+            loginObj.$authWithPassword({
+                email: username,
+                password: password
+            })
+                .then(function(user) {
+                    //Success callback
+                    console.log('Authentication successful');
+                    UserProps.setUser(user.password.email);
+                    $location.path('/admin');
+                }, function(error) {
+                    //Failure callback
+                    console.log(error + 'Authentication failure');
+                });
+        }
+    }
+])
+.service('UserProps', function() {
     var user = '';
- 
     return {
         getUser: function() {
             return user;
@@ -39,4 +50,4 @@ angular.module('myBoard.login', ['firebase'])
             user = value;
         }
     };
-})
+});

@@ -3,10 +3,12 @@
 @alert-border-radius:         @border-radius-base;
 @alert-link-font-weight:      bold;*/
 .masthead {
-  background: #fad46b;
+  background-image: url('../../asserts/images/artic-sky3.jpg');
+  background-size: cover;
   padding: 100px 0;
   position: relative;
   z-index: 2;
+
 }
 .masthead img {
   position: relative;
@@ -27,6 +29,16 @@
   font-size: 12px;
   padding-left: 4px;
 }
+
+.background-Wrap{
+  background-image: url('../../asserts/images/artic-sky3.jpg');
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+
 
 @media (min-width: 1000px) {
   .container {
@@ -83,12 +95,30 @@
 
 .myboard-login__title{
   text-align: center;
+  color: #fff;
 }
 
 .myboard-login__forget-link{
 
 }
 
+.myboard-login__auth{
+  margin: 20px 0 0 0;
+  padding: 0;
+  text-align: left;
+}
+.myboard-login__auth li{
+  margin: 0 0 0 0;
+  padding: 0;
+  list-style-type: none;
+}
+.myboard-login__auth li i{
+  color: #fff;
+  margin-right: 10px;
+}
+.has-error .form-control{
+  border: 1px solid #f84545;
+}
 /*  .Login Css */
 
 
