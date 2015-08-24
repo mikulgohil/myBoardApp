@@ -1,0 +1,9 @@
+{
+  "firebase": "mikul-board",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

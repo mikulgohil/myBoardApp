@@ -5,8 +5,10 @@ angular.module('myBoard.login', ['firebase'])
         var firebaseObj = new Firebase("https://mikul-board.firebaseio.com");
         var loginObj = $firebaseAuth(firebaseObj);
 
+        UserProps.setAuth(loginObj);
 
-        $scope.login = function() {
+        // Login with Github
+        $scope.loginGitHub = function() {
             var usersRef = new Firebase('https://mikul-board.firebaseio.com/users');
             var usersRef = $firebaseAuth(usersRef);
 
@@ -40,14 +42,3 @@ angular.module('myBoard.login', ['firebase'])
         }
     }
 ])
-.service('UserProps', function() {
-    var user = '';
-    return {
-        getUser: function() {
-            return user;
-        },
-        setUser: function(value) {
-            user = value;
-        }
-    };
-});

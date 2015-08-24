@@ -4,7 +4,8 @@
     	'myBoard.login',   // login folder
     	'myBoard.register',  // register folder
     	'myBoard.admin',  // admin folder
-    	'myBoard.addBoard' // addBoard folder
+    	'myBoard.addBoard', // addBoard folder
+    	'myBoard.user' // user Service
     ])
     .config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');

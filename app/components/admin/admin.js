@@ -4,9 +4,13 @@ angular.module('myBoard.admin',[])
 .controller('adminCtrl', ['$scope', '$location','$firebaseArray','$firebaseObject','$firebaseAuth','UserProps',
     function($scope, $location,$firebaseArray, $firebaseObject,$firebaseAuth,UserProps) {
 
+        if(!UserProps.getAuth()){
+            $location.path('/home');
+        }
     	console.log("I am in Admin");
-
+        
         var refArray = new Firebase("https://mikul-board.firebaseio.com");
+
         var messagesRef = refArray.child("board");
         //var query = messagesRef.orderByChild("emailId").limitToLast(10);
         var list = $firebaseArray(messagesRef);
@@ -34,7 +38,7 @@ angular.module('myBoard.admin',[])
              //$scope.detail = getIndex.detail;
              //console.log(getIndex);
 
-             $('#myModal').modal();
+             $('#editModal').modal();
              $scope.save = function(){
                 getIndex.title = $scope.title;
                 getIndex.detail = $scope.detail;
@@ -64,6 +68,11 @@ angular.module('myBoard.admin',[])
             list.$remove(index).then(function(ref) {
                 console.log("remove");
             });
+        }
+
+        $scope.logOut = function(){
+            console.log("logout - 1");
+            UserProps.logOut();
         }
 }])
 
