@@ -19,12 +19,11 @@ angular.module('myBoard.register', ['firebase'])
                 var password = $scope.user.password1;
 
                 if (email && password) {
-                    login.loading = true;
-                    console.log(email + " " + password);
+                    
                     auth.$createUser({
-  email: email,
-  password: password
-})
+                      email: email,
+                      password: password
+                    })
                         .then(function() {
                             // do things if success
                             console.log('User creation success');

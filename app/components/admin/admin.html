@@ -12,7 +12,6 @@
                             <li class="active"><a href="#/addBoard">Add Board</a></li>
                         </ul>
                         
-                        
                         <p class="navbar-text navbar-right"><a class="navbar-link" ng-click="logOut()">Logout</a></p>
                         <p class="navbar-text navbar-right">Heigh-ho, <a class="navbar-link">{{authUser}}</a></p>
                     </div>
@@ -122,14 +121,14 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-3 col-sm-6" ng-repeat="data in myData | filter:boardSearch">
-                <div class="thumbnail thumbnail-caption">
+                <div class="thumbnail">
                     <img src="asserts/images/thumbnail-large-01.jpg" alt="100%x180">
                     <div class="caption">
                         <h4 ng-click="viewBoard($index)">{{data.title}}</h4>
                         <p>{{ data.detail | limitTo: 100 }}{{data.detail.length > 100 ? '...' : ''}}</p>
                         <p>Board By : {{data.emailId}}</p>
                         <p>{{data.$id}}</p>
-                        <p>
+                        <p ng-show="authUser == data.emailId">
                             <button class="btn btn-primary" ng-click="edit(data.$id)">Edit</button>
                             <button class="btn btn-danger" ng-click="remove($index)">Delete</button>
                         </p>

@@ -19,13 +19,8 @@ angular.module('myBoard.addBoard', ['firebase', 'ui.router'])
             var user = user;
 
 
-var messageListRef = new Firebase('https://mikul-board.firebaseio.com/board');
-var newMessageRef = messageListRef.push();
-
-
-
-           // 
-
+            var messageListRef = new Firebase('https://mikul-board.firebaseio.com/board');
+            var newMessageRef = messageListRef.push();
 
             newMessageRef.set({
                 title: title,
@@ -33,8 +28,8 @@ var newMessageRef = messageListRef.push();
                 emailId: user,
                 '.priority': user
             });
-
-            //$location.path('/admin')
+            console.log("Board Added");
+            $location.path('/admin');
 
         }
 

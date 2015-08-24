@@ -5,7 +5,7 @@ angular.module('myBoard.login', ['firebase'])
         var firebaseObj = new Firebase("https://mikul-board.firebaseio.com");
         var loginObj = $firebaseAuth(firebaseObj);
 
-        UserProps.setAuth(loginObj);
+
 
         // Login with Github
         $scope.loginGitHub = function() {

@@ -4,9 +4,7 @@ angular.module('myBoard.admin',[])
 .controller('adminCtrl', ['$scope', '$location','$firebaseArray','$firebaseObject','$firebaseAuth','UserProps',
     function($scope, $location,$firebaseArray, $firebaseObject,$firebaseAuth,UserProps) {
 
-        if(!UserProps.getAuth()){
-            $location.path('/home');
-        }
+        
     	console.log("I am in Admin");
         
         var refArray = new Firebase("https://mikul-board.firebaseio.com");
@@ -34,7 +32,6 @@ angular.module('myBoard.admin',[])
             //getIndex.title = "This is great working finr";
             
             var getTitle = getIndex;
-            console.log(getTitle.title);
              //$scope.detail = getIndex.detail;
              //console.log(getIndex);
 
@@ -57,7 +54,6 @@ angular.module('myBoard.admin',[])
         list.$loaded()
           .then(function(x) {
             $scope.myData = list;
-            console.log(list.$indexFor($scope.username));  
           })
           .catch(function(error) {
             console.log("Error:", error);
@@ -71,7 +67,7 @@ angular.module('myBoard.admin',[])
         }
 
         $scope.logOut = function(){
-            console.log("logout - 1");
+            console.log("logout");
             UserProps.logOut();
         }
 }])

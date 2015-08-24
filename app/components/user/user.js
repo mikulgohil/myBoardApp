@@ -9,15 +9,8 @@ angular.module('myBoard.user',[])
         setUser: function(value) {
             user = value;
         },
-        setAuth : function(obj){
-            auth = obj;
-        },
-        getAuth: function(){
-            return auth;
-        },
         logOut : function(){
             console.log("logout");
-            Auth.$unauth();
             $location.path('/home');
             
         }

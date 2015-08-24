@@ -150,6 +150,11 @@
 .thumbnail .caption .tag li:last-child{
   padding-right:0;
 }
+
+.thumbnail .caption h4{
+  cursor: pointer;
+}
+
 /* .Admin */
 
 /* Add Post */
